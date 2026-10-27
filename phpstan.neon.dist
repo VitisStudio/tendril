@@ -1,0 +1,38 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    # Level 8 is the enforced bar. Level max was evaluated (2026-10-01): it adds
+    # ~450 "cannot cast mixed" reports on query-builder row values, which is the
+    # expected shape of a package built on raw rollup/activity tables. Level 8
+    # still catches nullability, undefined properties and wrong signatures.
+    level: 8
+    paths:
+        - packages/core/src
+        - packages/product/src
+        - packages/marketing/src
+        - packages/filament/src
+        - packages/timescale/src
+        - packages/destinations/src
+    tmpDir: build/phpstan
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Driver-specific SQL fragments (JsonSql, grammar->wrap) are assembled at
+        # runtime from validated identifiers and bound parameters, so they are
+        # never literal strings. Every JSON path segment is checked against
+        # JsonSql::KEY_PATTERN before being embedded.
+        -
+            message: '#expects (Illuminate\\Contracts\\Database\\Query\\Expression\|)?literal-string, (non-falsy-)?string given#'
+            identifier: argument.type
+        -
+            message: '#expects TValue of float\|int\|literal-string, string given#'
+            identifier: argument.type
+        -
+            path: packages/core/src/Support/Database.php
+            identifier: missingType.generics
+        # Laravel's PhpRedisConnection::lrem() normalizes argument order to
+        # Predis's (key, count, value); the @mixin \Redis signature disagrees.
+        -
+            message: '#Parameter \#3 \$count of method Redis::lrem\(\) expects int, string given#'
+            path: packages/core/src/Transport/Buffer/RedisBufferStore.php

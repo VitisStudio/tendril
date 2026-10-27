@@ -1,0 +1,36 @@
+{
+    "name": "vitisstudio/tendril-filament",
+    "description": "Tendril Filament 5 plugin: tenant-aware analytics pages and widgets over rollups and activity tables.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "filament",
+        "analytics",
+        "tendril"
+    ],
+    "require": {
+        "php": "^8.4",
+        "filament/filament": "^5.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "vitisstudio/tendril-core": "^1.0",
+        "vitisstudio/tendril-product": "^1.0"
+    },
+    "suggest": {
+        "vitisstudio/tendril-marketing": "Adds the Conversions and Campaigns pages."
+    },
+    "autoload": {
+        "psr-4": {
+            "VitisStudio\\Tendril\\Filament\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VitisStudio\\Tendril\\Filament\\TendrilFilamentServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

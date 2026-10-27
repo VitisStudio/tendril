@@ -1,0 +1,35 @@
+{
+    "name": "vitisstudio/tendril-timescale",
+    "description": "Optional TimescaleDB accelerator for Tendril: capability detection, hypertables, chunk-based retention and compression where the edition allows it.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "analytics",
+        "timescaledb",
+        "postgresql",
+        "tendril"
+    ],
+    "require": {
+        "php": "^8.4",
+        "illuminate/console": "^12.0|^13.0",
+        "illuminate/database": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "vitisstudio/tendril-core": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "VitisStudio\\Tendril\\Timescale\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VitisStudio\\Tendril\\Timescale\\TimescaleServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

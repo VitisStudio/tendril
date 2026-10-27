@@ -1,0 +1,39 @@
+{
+    "name": "vitisstudio/tendril-destinations",
+    "description": "Server-side conversion destinations for Tendril: idempotent delivery of normalized conversions to webhooks, Meta Conversions API and Google Ads.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "analytics",
+        "conversions",
+        "meta-capi",
+        "google-ads",
+        "tendril"
+    ],
+    "require": {
+        "php": "^8.4",
+        "guzzlehttp/guzzle": "^7.8",
+        "illuminate/console": "^12.0|^13.0",
+        "illuminate/database": "^12.0|^13.0",
+        "illuminate/http": "^12.0|^13.0",
+        "illuminate/support": "^12.0|^13.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "vitisstudio/tendril-core": "^1.0",
+        "vitisstudio/tendril-marketing": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "VitisStudio\\Tendril\\Destinations\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VitisStudio\\Tendril\\Destinations\\DestinationsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

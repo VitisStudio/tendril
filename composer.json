@@ -1,0 +1,84 @@
+{
+    "name": "vitisstudio/tendril",
+    "description": "Tendril: first-party product and marketing analytics for Laravel.",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "analytics",
+        "livewire",
+        "filament",
+        "tendril"
+    ],
+    "require": {
+        "php": "^8.4",
+        "vitisstudio/tendril-core": "^1.0",
+        "vitisstudio/tendril-destinations": "^1.0",
+        "vitisstudio/tendril-filament": "^1.0",
+        "vitisstudio/tendril-marketing": "^1.0",
+        "vitisstudio/tendril-product": "^1.0",
+        "vitisstudio/tendril-timescale": "^1.0"
+    },
+    "require-dev": {
+        "filament/filament": "^5.0",
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "livewire/livewire": "^4.0",
+        "orchestra/testbench": "^10.0|^11.0",
+        "pestphp/pest": "^3.8|^4.0",
+        "pestphp/pest-plugin-laravel": "^3.0|^4.0",
+        "predis/predis": "^2.2|^3.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/*",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "vitisstudio/tendril-core": "1.x-dev",
+                    "vitisstudio/tendril-product": "1.x-dev",
+                    "vitisstudio/tendril-marketing": "1.x-dev",
+                    "vitisstudio/tendril-filament": "1.x-dev",
+                    "vitisstudio/tendril-timescale": "1.x-dev",
+                    "vitisstudio/tendril-destinations": "1.x-dev"
+                }
+            }
+        }
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "test": "@php vendor/bin/pest",
+        "test:load": "@php vendor/bin/pest --group=load --exclude-group=none",
+        "analyse": "@php vendor/bin/phpstan analyse --memory-limit=2G",
+        "format": "@php vendor/bin/pint",
+        "lint": "@php vendor/bin/pint --test"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

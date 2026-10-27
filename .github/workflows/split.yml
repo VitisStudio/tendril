@@ -1,0 +1,50 @@
+name: split
+
+# Lockstep releases: every package is split to its read-only repository and
+# tagged with the same version when a tag is pushed to the monorepo.
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - { path: core, repository: tendril-core }
+          - { path: product, repository: tendril-product }
+          - { path: marketing, repository: tendril-marketing }
+          - { path: filament, repository: tendril-filament }
+          - { path: timescale, repository: tendril-timescale }
+          - { path: destinations, repository: tendril-destinations }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: danharrin/monorepo-split-github-action@v2.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
+        with:
+          package_directory: packages/${{ matrix.package.path }}
+          repository_organization: vitisstudio
+          repository_name: ${{ matrix.package.repository }}
+          branch: main
+          user_name: tendril-release
+          user_email: tendril-release@users.noreply.github.com
+
+      - if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        uses: danharrin/monorepo-split-github-action@v2.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLIT_TOKEN }}
+        with:
+          tag: ${{ github.ref_name }}
+          package_directory: packages/${{ matrix.package.path }}
+          repository_organization: vitisstudio
+          repository_name: ${{ matrix.package.repository }}
+          branch: main
+          user_name: tendril-release
+          user_email: tendril-release@users.noreply.github.com

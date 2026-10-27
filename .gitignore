@@ -1,0 +1,14 @@
+/vendor/
+/packages/*/vendor/
+/packages/*/composer.lock
+/build/
+/.phpunit.cache/
+/.phpunit.result.cache
+/workbench/bootstrap/cache/*
+!/workbench/bootstrap/cache/.gitkeep
+/workbench/storage/*
+!/workbench/storage/.gitkeep
+/workbench/database/*.sqlite
+composer.lock
+.env
+.DS_Store

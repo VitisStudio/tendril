@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "tables": {
+        "tendril_events": ["id", "occurred_at", "received_at", "name", "version", "actor_type", "actor_id", "anonymous_id", "session_id", "tenant_type", "tenant_id", "request_id", "trace_id", "parent_id", "dedupe_key", "source", "environment", "properties", "context"],
+        "tendril_sessions": ["id", "anonymous_id", "actor_type", "actor_id", "tenant_type", "tenant_id", "started_at", "last_seen_at", "landing_route", "referrer_host", "referrer_class", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "click_ids", "event_count", "page_view_count", "environment"],
+        "tendril_touchpoints": ["id", "session_id", "occurred_at", "anonymous_id", "actor_type", "actor_id", "tenant_type", "tenant_id", "source", "medium", "campaign", "content", "term", "referrer_host", "referrer_class", "landing_route", "has_click_id", "click_ids", "environment"],
+        "tendril_aliases": ["id", "anonymous_id", "actor_type", "actor_id", "valid_from", "valid_to", "reason", "created_at"],
+        "tendril_erasures": ["id", "subject_type", "subject_fingerprint", "actor_pseudonym", "anonymous_pseudonym", "status", "counts", "performed_by", "requested_at", "completed_at"],
+        "tendril_audit_log": ["id", "action", "subject", "performed_by", "created_at"],
+        "tendril_dirty_buckets": ["bucket_start", "reason", "marked_at"],
+        "tendril_dead_letters": ["id", "batch_id", "reason", "payload", "events", "attempts", "failed_at"],
+        "tendril_state": ["key", "value", "updated_at"],
+        "tendril_rollups": ["id", "granularity", "bucket_start", "tenant_type", "tenant_id", "kind", "dimension", "count", "sum", "version"],
+        "tendril_actor_activity": ["id", "date", "tenant_type", "tenant_id", "actor_type", "actor_id", "kind", "subject", "event_count"],
+        "tendril_features": ["id", "key", "name", "description", "definition", "active", "revision", "created_at", "updated_at"],
+        "tendril_funnels": ["id", "key", "name", "description", "definition", "active", "revision", "created_at", "updated_at"],
+        "tendril_cohorts": ["id", "key", "name", "description", "definition", "active", "revision", "created_at", "updated_at"],
+        "tendril_conversions": ["id", "key", "name", "description", "definition", "active", "revision", "created_at", "updated_at"],
+        "tendril_destination_deliveries": ["id", "destination", "conversion_key", "event_id", "status", "attempts", "last_error", "response_code", "occurred_at", "delivered_at", "updated_at"]
+    }
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="default"
+         failOnRisky="false"
+         failOnWarning="false">
+    <testsuites>
+        <testsuite name="Core">
+            <directory>tests/Core</directory>
+        </testsuite>
+        <testsuite name="Product">
+            <directory>tests/Product</directory>
+        </testsuite>
+        <testsuite name="Marketing">
+            <directory>tests/Marketing</directory>
+        </testsuite>
+        <testsuite name="Filament">
+            <directory>tests/Filament</directory>
+        </testsuite>
+        <testsuite name="Timescale">
+            <directory>tests/Timescale</directory>
+        </testsuite>
+        <testsuite name="Destinations">
+            <directory>tests/Destinations</directory>
+        </testsuite>
+        <testsuite name="Scale">
+            <directory>tests/Scale</directory>
+        </testsuite>
+        <testsuite name="Schema">
+            <directory>tests/Schema</directory>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>load</group>
+        </exclude>
+    </groups>
+    <source>
+        <include>
+            <directory>packages/core/src</directory>
+            <directory>packages/product/src</directory>
+            <directory>packages/marketing/src</directory>
+            <directory>packages/filament/src</directory>
+            <directory>packages/timescale/src</directory>
+            <directory>packages/destinations/src</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:ehXh+B2BxJI8lwsbYIpMGPSXtDIheDeK9sNq270KaFE="/>
+        <env name="APP_DEBUG" value="true"/>
+        <env name="CACHE_STORE" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+    </php>
+</phpunit>
